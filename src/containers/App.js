@@ -9,10 +9,12 @@ import Sort from "../components/Sort/Sort";
 
 class App extends Component {
   state = {
+    initialEvents: null,
     events: null,
     loading: true,
-    error: false
-    // errorMessage: null
+    error: false,
+    // errorMessage: null,
+    filter: ""
   };
 
   componentDidMount() {
@@ -20,7 +22,11 @@ class App extends Component {
       .get("/events.json")
       .then(response => {
         const fetchedEvents = response.data; // fetched events need to have a unique key
-        this.setState({ loading: false, events: fetchedEvents.events });
+        this.setState({
+          loading: false,
+          initialEvents: fetchedEvents.events,
+          events: fetchedEvents.events
+        });
       })
       .catch(error => {
         // this.setState({ loading: false, error: true, errorMessage: error });
@@ -28,6 +34,20 @@ class App extends Component {
         console.log(error);
       });
   }
+
+  onFilterChange = e => {
+    const newFilter = e.target.value;
+    let filteredEvents = this.state.initialEvents;
+
+    console.log(newFilter);
+
+    filteredEvents = filteredEvents.filter(event => {
+      return event.name.toLowerCase().search(newFilter.toLowerCase()) !== -1;
+    });
+
+    this.setState({ filter: newFilter, events: filteredEvents });
+    // console.log(this.state.filter, this.state.events);
+  };
 
   render() {
     let events = null;
@@ -59,7 +79,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Bridj Events with available seats</h1>
-        <Filter label="filter the events by the name of the venue" />
+        <Filter
+          label="filter the events by the name of the venue"
+          filter={this.state.filter}
+          onFilterChange={this.onFilterChange}
+        />
         <Sort />
         {events}
       </div>
