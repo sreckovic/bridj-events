@@ -18,7 +18,7 @@ class App extends Component {
       .then(response => {
         const fetchedEvents = response.data;
         this.setState({ loading: false, events: fetchedEvents.events });
-        console.log(this.state.events);
+        //console.log(this.state.events);
       })
       .catch(error => {
         this.setState({ loading: false, error: true });
@@ -39,15 +39,24 @@ class App extends Component {
 
     if (this.state.events) {
       events = this.state.events.map(event => {
-        return (
-          <div className="singleEvent" key={event.date}>
-            <Event event={event} />
-          </div>
-        );
+        if (event.available_seats > 0) {
+          return (
+            <div className="singleEvent" key={event.date}>
+              <Event event={event} />
+            </div>
+          );
+        } else {
+          return null;
+        }
       });
     }
 
-    return <div className="App">{events}</div>;
+    return (
+      <div className="App">
+        <h1>Bridj Events with available seats</h1>
+        {events}
+      </div>
+    );
   }
 }
 

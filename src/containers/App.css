@@ -1,3 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700");
+
 .App {
-  text-align: center;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 5%;
+  text-align: left;
+}
+
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 0.25rem;
+}
+
+.singleEvent {
+  margin-bottom: 1rem;
 }
