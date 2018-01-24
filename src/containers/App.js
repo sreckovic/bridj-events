@@ -55,7 +55,7 @@ class App extends Component {
     let sortedEvents = null;
 
     // check if we already filtered the events
-    if (this.state.filter) {
+    if (this.state.filter !== "") {
       sortedEvents = this.state.events;
     } else {
       sortedEvents = this.state.initialEvents;
@@ -63,7 +63,11 @@ class App extends Component {
 
     sortedEvents.sort(sortBy("-" + e.target.id));
 
-    this.setState({ sortedEvents: sortedEvents, sortBy: e.target.id });
+    this.setState({
+      events: sortedEvents,
+      sortedEvents: sortedEvents,
+      sortBy: e.target.id
+    });
   };
 
   render() {
