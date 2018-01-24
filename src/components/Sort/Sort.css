@@ -1,0 +1,13 @@
+ul.sort {
+  margin-bottom: 1rem;
+}
+
+ul.sort li {
+  display: inline-block;
+  margin-right: 6px;
+  margin-bottom: 0;
+}
+
+ul.sort li a {
+  text-decoration: none;
+}
