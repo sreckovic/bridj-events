@@ -17,7 +17,7 @@ const sort = ({ onSortClick }) => {
         </a>
       </li>
       <li>
-        <a href="#seats" id="seats" onClick={onSortClick}>
+        <a href="#available_seats" id="available_seats" onClick={onSortClick}>
           available seats
         </a>
       </li>

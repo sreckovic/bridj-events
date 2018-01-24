@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import sortBy from "sort-by";
 
 import "./App.css";
 import axios from "../axios";
@@ -50,7 +51,6 @@ class App extends Component {
 
   onSortClick = e => {
     e.preventDefault();
-    this.setState({ sortBy: e.target.id });
 
     let sortedEvents = null;
 
@@ -61,9 +61,9 @@ class App extends Component {
       sortedEvents = this.state.initialEvents;
     }
 
-    // sort
+    sortedEvents.sort(sortBy("-" + e.target.id));
 
-    this.setState({ sortedEvents: sortedEvents });
+    this.setState({ sortedEvents: sortedEvents, sortBy: e.target.id });
   };
 
   render() {
