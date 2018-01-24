@@ -10,17 +10,18 @@ class App extends Component {
     events: null,
     loading: true,
     error: false
+    // errorMessage: null
   };
 
   componentDidMount() {
     axios
       .get("/events.json")
       .then(response => {
-        const fetchedEvents = response.data;
+        const fetchedEvents = response.data; // fetched events need to have a unique key
         this.setState({ loading: false, events: fetchedEvents.events });
-        //console.log(this.state.events);
       })
       .catch(error => {
+        // this.setState({ loading: false, error: true, errorMessage: error });
         this.setState({ loading: false, error: true });
         console.log(error);
       });
@@ -34,12 +35,14 @@ class App extends Component {
     }
 
     if (this.state.error) {
-      events = <p style={{ textAlign: "center" }}>Something went wrong!</p>;
+      events = <p style={{ textAlign: "left" }}>Something went wrong!</p>;
     }
 
     if (this.state.events) {
       events = this.state.events.map(event => {
+        // check if seats are available
         if (event.available_seats > 0) {
+          // using date as unique key
           return (
             <div className="singleEvent" key={event.date}>
               <Event event={event} />
