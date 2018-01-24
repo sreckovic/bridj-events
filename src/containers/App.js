@@ -24,7 +24,7 @@ class App extends Component {
         const fetchedEvents = response.data; // fetched events need to have a unique key
         this.setState({
           loading: false,
-          initialEvents: fetchedEvents.events,
+          initialEvents: fetchedEvents.events, // set default events
           events: fetchedEvents.events
         });
       })
@@ -37,16 +37,13 @@ class App extends Component {
 
   onFilterChange = e => {
     const newFilter = e.target.value;
-    let filteredEvents = this.state.initialEvents;
-
-    console.log(newFilter);
+    let filteredEvents = this.state.initialEvents; // reset events we filter!
 
     filteredEvents = filteredEvents.filter(event => {
       return event.name.toLowerCase().search(newFilter.toLowerCase()) !== -1;
     });
 
     this.setState({ filter: newFilter, events: filteredEvents });
-    // console.log(this.state.filter, this.state.events);
   };
 
   render() {
