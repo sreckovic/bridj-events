@@ -50,9 +50,20 @@ class App extends Component {
 
   onSortClick = e => {
     e.preventDefault();
-
     this.setState({ sortBy: e.target.id });
-    console.log(this.state.sortBy);
+
+    let sortedEvents = null;
+
+    // check if we already filtered the events
+    if (this.state.filter) {
+      sortedEvents = this.state.events;
+    } else {
+      sortedEvents = this.state.initialEvents;
+    }
+
+    // sort
+
+    this.setState({ sortedEvents: sortedEvents });
   };
 
   render() {
