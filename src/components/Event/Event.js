@@ -6,17 +6,17 @@ const event = props => {
   return (
     <Aux>
       <h2>{props.event.name}</h2>
+
+      <p>Venue: {props.event.venue}</p>
       <p>Date: {props.event.date}</p>
       <p>Available seats: {props.event.available_seats}</p>
       <p>
         Price: <strong>${props.event.price}</strong>
       </p>
-      <p>Venue: {props.event.venue}</p>
       <p>
-        {props.event.labels.map((label, i) => {
-          console.log(label, i);
-          return label;
-          //return label[i] + " ";
+        Tags:
+        {props.event.labels.map(label => {
+          return <span key={label}> {label}</span>;
         })}
       </p>
     </Aux>
