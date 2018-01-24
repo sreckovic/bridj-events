@@ -4,6 +4,8 @@ import "./App.css";
 import axios from "../axios";
 import Event from "../components/Event/Event";
 import Spinner from "../UI/Spinner/Spinner";
+import Filter from "../components/Filter/Filter";
+import Sort from "../components/Sort/Sort";
 
 class App extends Component {
   state = {
@@ -57,6 +59,8 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Bridj Events with available seats</h1>
+        <Filter label="filter the events by the name of the venue" />
+        <Sort />
         {events}
       </div>
     );
