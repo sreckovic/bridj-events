@@ -5,6 +5,7 @@ ul.sort {
 ul.sort li {
   display: inline-block;
   margin-right: 6px;
+  padding-right: 6px;
   margin-bottom: 0;
 }
 

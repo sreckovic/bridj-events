@@ -9,10 +9,12 @@ import Sort from "../components/Sort/Sort";
 
 class App extends Component {
   state = {
-    initialEvents: null,
     events: null,
+    initialEvents: null,
+    sortedEvents: null,
     loading: true,
     error: false,
+    sortBy: null,
     // errorMessage: null,
     filter: ""
   };
@@ -44,6 +46,13 @@ class App extends Component {
     });
 
     this.setState({ filter: newFilter, events: filteredEvents });
+  };
+
+  onSortClick = e => {
+    e.preventDefault();
+
+    this.setState({ sortBy: e.target.id });
+    console.log(this.state.sortBy);
   };
 
   render() {
@@ -81,7 +90,7 @@ class App extends Component {
           filter={this.state.filter}
           onFilterChange={this.onFilterChange}
         />
-        <Sort />
+        <Sort onSortClick={this.onSortClick} />
         {events}
       </div>
     );
